@@ -1,0 +1,3 @@
+damage_types = {
+
+}

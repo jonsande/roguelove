@@ -1,0 +1,981 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Condition.html">Condition</a></li>
+  <li><a href="../classes/Creature.html">Creature</a></li>
+  <li><a href="../classes/Effect.html">Effect</a></li>
+  <li><a href="../classes/Faction.html">Faction</a></li>
+  <li><strong>Feature</strong></li>
+  <li><a href="../classes/Item.html">Item</a></li>
+  <li><a href="../classes/Map.html">Map</a></li>
+  <li><a href="../classes/Projectile.html">Projectile</a></li>
+  <li><a href="../classes/RangedAttack.html">RangedAttack</a></li>
+  <li><a href="../classes/Service.html">Service</a></li>
+  <li><a href="../classes/Spell.html">Spell</a></li>
+  <li><a href="../classes/Store.html">Store</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/gamelogic.html">gamelogic</a></li>
+  <li><a href="../modules/input.html">input</a></li>
+  <li><a href="../modules/jumper.core.bheap.html">jumper.core.bheap</a></li>
+  <li><a href="../modules/jumper.core.heuristics.html">jumper.core.heuristics</a></li>
+  <li><a href="../modules/jumper.core.node.html">jumper.core.node</a></li>
+  <li><a href="../modules/jumper.core.path.html">jumper.core.path</a></li>
+  <li><a href="../modules/jumper.grid.html">jumper.grid</a></li>
+  <li><a href="../modules/jumper.pathfinder.html">jumper.pathfinder</a></li>
+  <li><a href="../modules/lib.serialize.html">lib.serialize</a></li>
+  <li><a href="../modules/mapgen.html">mapgen</a></li>
+  <li><a href="../modules/output.html">output</a></li>
+  <li><a href="../modules/util.html">util</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/jumper.search.astar.html">jumper.search.astar</a></li>
+  <li><a href="../scripts/jumper.search.bfs.html">jumper.search.bfs</a></li>
+  <li><a href="../scripts/jumper.search.dfs.html">jumper.search.dfs</a></li>
+  <li><a href="../scripts/jumper.search.dijkstra.html">jumper.search.dijkstra</a></li>
+  <li><a href="../scripts/jumper.search.jps.html">jumper.search.jps</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Feature</code></h1>
+<p></p>
+<p></p>
+
+
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#feature:init">feature:init (feature_type, info, x, y)</a></td>
+	<td class="summary">Initiates a feature.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:get_name">feature:get_name (full)</a></td>
+	<td class="summary">Returns the name of the feature.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:get_description">feature:get_description ()</a></td>
+	<td class="summary">Returns the description of the feature, and descriptive lines noting what you can do with it.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:can_enter">feature:can_enter (enterer, fromX, fromY)</a></td>
+	<td class="summary">Calls the can_enter() function of a feature, if it has one.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:enter">feature:enter (enterer, fromX, fromY)</a></td>
+	<td class="summary">Calls the enter() function of a feature, if it has one.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:push">feature:push (pusher)</a></td>
+	<td class="summary">Pushes a feature, if it's pushable.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:moveTo">feature:moveTo (x, y, noTween)</a></td>
+	<td class="summary">Moves a feature to a new location.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:damage">feature:damage (amt, source, damage_type, force, armor_piercing)</a></td>
+	<td class="summary">Damages a feature, destroying it if it has HP and the damage done was more than its HP.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:calculate_damage_received">feature:calculate_damage_received (amt, damage_type, armor_piercing, ignoreWeakness)</a></td>
+	<td class="summary">Calculates the damage amount a feature would receive based on damage types, weaknesses, armor, etc</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:destroy">feature:destroy (source, damage_type)</a></td>
+	<td class="summary">Destroy a feature.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:delete">feature:delete (map)</a></td>
+	<td class="summary">Delete a feature from the map</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:refresh_image_name">feature:refresh_image_name (map)</a></td>
+	<td class="summary">Refresh the image name of a feature.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:is_hazardous_for">feature:is_hazardous_for (ctype)</a></td>
+	<td class="summary">Checks if a feature is hazardous for a certain creature type.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:action">feature:action (activator, actionID, args.)</a></td>
+	<td class="summary">Perform a feature's action() callback, if applicable.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:action_requires">feature:action_requires (activator, actionID)</a></td>
+	<td class="summary">Check if a feature's action's requirements are met</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:take_item">feature:take_item (taker, item)</a></td>
+	<td class="summary">Perform a feature's take_item() callback, if applicable.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:cleanup">feature:cleanup (map)</a></td>
+	<td class="summary">Perform a feature's cleanup() callback, if applicable.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:give_item">feature:give_item (item)</a></td>
+	<td class="summary">Transfer an item to a feature's inventory</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:drop_item">feature:drop_item (item)</a></td>
+	<td class="summary">Have a feature "drop" an item it contains on to the tile it's on</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:drop_all_items">feature:drop_all_items ()</a></td>
+	<td class="summary">Have a feature drop all their items on the tile they're on</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:delete_item">feature:delete_item (item, amt)</a></td>
+	<td class="summary">Delete an item from a feature's inventory</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:get_inventory">feature:get_inventory ()</a></td>
+	<td class="summary">Get every item in a feature's inventory:</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:has_item">feature:has_item (item, sortBy, enchantments, level)</a></td>
+	<td class="summary">Check if a feature has an instance of an item ID</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:has_specific_item">feature:has_specific_item (item)</a></td>
+	<td class="summary">Check if a feature has a specific item</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:has_tag">feature:has_tag (tag)</a></td>
+	<td class="summary">Checks if a feature has a descriptive tag.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:populate_items">feature:populate_items (map, room, forceDefault)</a></td>
+	<td class="summary">Populate items in a feature</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:modify_generated_item">feature:modify_generated_item (item, map, room)</a></td>
+	<td class="summary">Modify an item generated by a feature</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:combust">feature:combust (skip_basic, source)</a></td>
+	<td class="summary">Checks a feature's combust() callback, if applicable, and then lights it on fire if applicable.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:apply_cold">feature:apply_cold (source)</a></td>
+	<td class="summary">Checks a feature's apply_cold() callback, if applicable, or its cold_feature flag, if applicable</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#feature:apply_heat">feature:apply_heat (source)</a></td>
+	<td class="summary">Checks a feature's apply_heat() callback, if applicable, or its heat_feature flag, if applicable</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "feature:init"></a>
+    <strong>feature:init (feature_type, info, x, y)</strong>
+    </dt>
+    <dd>
+    Initiates a feature.  Don't call this explicitly, it's called when you create a new feature using Feature('featureID').
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">feature_type</span>
+         The ID of the feature you'd like to create
+        </li>
+        <li><span class="parameter">info</span>
+         An argument to pass to the feature's new() function, if applicable (optional)
+        </li>
+        <li><span class="parameter">x</span>
+         The x-coordinate (optional, will be set when it is added to the map)
+        </li>
+        <li><span class="parameter">y</span>
+         The y-coordinate (optional, will be set when it is added to the map)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The feature itself.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:get_name"></a>
+    <strong>feature:get_name (full)</strong>
+    </dt>
+    <dd>
+    Returns the name of the feature.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">full</span>
+         Boolean. Whether to return the name in uppercase and without an article.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        String. The name.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:get_description"></a>
+    <strong>feature:get_description ()</strong>
+    </dt>
+    <dd>
+    Returns the description of the feature, and descriptive lines noting what you can do with it.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        String. The description.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:can_enter"></a>
+    <strong>feature:can_enter (enterer, fromX, fromY)</strong>
+    </dt>
+    <dd>
+    Calls the can_enter() function of a feature, if it has one.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">enterer</span>
+         Creature. The creature entering the feature's tile.
+        </li>
+        <li><span class="parameter">fromX</span>
+         Number. The x-coordinate the creature is coming from
+        </li>
+        <li><span class="parameter">fromY</span>
+         Number. The y-coordinate the creature is coming from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not the creature was allowed to enter.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:enter"></a>
+    <strong>feature:enter (enterer, fromX, fromY)</strong>
+    </dt>
+    <dd>
+    Calls the enter() function of a feature, if it has one.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">enterer</span>
+         Creature. The creature entering the feature's tile.
+        </li>
+        <li><span class="parameter">fromX</span>
+         Number. The x-coordinate the creature is coming from
+        </li>
+        <li><span class="parameter">fromY</span>
+         Number. The y-coordinate the creature is coming from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not the creature was allowed to enter.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:push"></a>
+    <strong>feature:push (pusher)</strong>
+    </dt>
+    <dd>
+    Pushes a feature, if it's pushable.  This also calls the push() callback of a feature, if applicable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pusher</span>
+         Creature. The creature pushing the feature. This will be used to determine where it is being pushed to.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not the push went through.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:moveTo"></a>
+    <strong>feature:moveTo (x, y, noTween)</strong>
+    </dt>
+    <dd>
+    Moves a feature to a new location.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         Number. The x-coordinate to move to.
+        </li>
+        <li><span class="parameter">y</span>
+         Number. The y-coordinate to move to.
+        </li>
+        <li><span class="parameter">noTween</span>
+         Boolean. If true, no tweening animation will be used. (optional)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not the move happened.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:damage"></a>
+    <strong>feature:damage (amt, source, damage_type, force, armor_piercing)</strong>
+    </dt>
+    <dd>
+    Damages a feature, destroying it if it has HP and the damage done was more than its HP.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">amt</span>
+         Number. How much damage is being done.
+        </li>
+        <li><span class="parameter">source</span>
+         Entity. What is damaging the feature.
+        </li>
+        <li><span class="parameter">damage_type</span>
+         String. The damage type. (optional)
+        </li>
+        <li><span class="parameter">force</span>
+         Boolean. Whether or not to ignore the feature's damage() callback (optional)
+        </li>
+        <li><span class="parameter">armor_piercing</span>
+         True/False, or Number. If set to true, it ignores all armor. If set to a number, ignores that much armor. (optional)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Number. The final damage that was done.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:calculate_damage_received"></a>
+    <strong>feature:calculate_damage_received (amt, damage_type, armor_piercing, ignoreWeakness)</strong>
+    </dt>
+    <dd>
+    Calculates the damage amount a feature would receive based on damage types, weaknesses, armor, etc
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">amt</span>
+         Number. The damage to deal.
+        </li>
+        <li><span class="parameter">damage_type</span>
+         String. The damage type of the attack. (optional)
+        </li>
+        <li><span class="parameter">armor_piercing</span>
+         True/False, or Number. If set to true, it ignores all armor. If set to a number, ignores that much armor. (optional)
+        </li>
+        <li><span class="parameter">ignoreWeakness</span>
+         Boolean. If true, don't apply weakness (optional)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Number. The final damage done.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:destroy"></a>
+    <strong>feature:destroy (source, damage_type)</strong>
+    </dt>
+    <dd>
+    Destroy a feature.  This is different from Feature:delete() in that it calls the destroy() callback and drops any items in its inventory
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         Entity. The source of the damage (optional)
+        </li>
+        <li><span class="parameter">damage_type</span>
+         String. The damage type (optional)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:delete"></a>
+    <strong>feature:delete (map)</strong>
+    </dt>
+    <dd>
+    Delete a feature from the map
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">map</span>
+         The map that the feature is on. If blank, defaults to the current map. (optional)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:refresh_image_name"></a>
+    <strong>feature:refresh_image_name (map)</strong>
+    </dt>
+    <dd>
+    Refresh the image name of a feature.
+Used for features that look different if they're next to each other, like water, when its surrounding has changed.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">map</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the image name was refreshed or not
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:is_hazardous_for"></a>
+    <strong>feature:is_hazardous_for (ctype)</strong>
+    </dt>
+    <dd>
+    Checks if a feature is hazardous for a certain creature type.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ctype</span>
+         String. The creature type we're checking for. If blank, just checks if it's generally hazardous. (optional)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not the feature is hazardous.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:action"></a>
+    <strong>feature:action (activator, actionID, args.)</strong>
+    </dt>
+    <dd>
+    Perform a feature's action() callback, if applicable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">activator</span>
+         Creature. The creature activating the feature.
+        </li>
+        <li><span class="parameter">actionID</span>
+         Text. The ID of the action (optional, only if a feature has multiple actions available).
+        </li>
+        <li><span class="parameter">args.</span>
+         Anything. Other arguments to pass to the action (optional)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:action_requires"></a>
+    <strong>feature:action_requires (activator, actionID)</strong>
+    </dt>
+    <dd>
+    Check if a feature's action's requirements are met
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">activator</span>
+         Creature. The creature activating the feature.
+        </li>
+        <li><span class="parameter">actionID</span>
+         Text. The ID of the action (optional, only if a feature has multiple actions available).
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:take_item"></a>
+    <strong>feature:take_item (taker, item)</strong>
+    </dt>
+    <dd>
+    Perform a feature's take_item() callback, if applicable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">taker</span>
+         Creature. The creature taking the item from the feature
+        </li>
+        <li><span class="parameter">item</span>
+         Item. The item being taken
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:cleanup"></a>
+    <strong>feature:cleanup (map)</strong>
+    </dt>
+    <dd>
+    Perform a feature's cleanup() callback, if applicable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">map</span>
+         Map. The map the feature is on
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:give_item"></a>
+    <strong>feature:give_item (item)</strong>
+    </dt>
+    <dd>
+    Transfer an item to a feature's inventory
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         Item. The item to give.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:drop_item"></a>
+    <strong>feature:drop_item (item)</strong>
+    </dt>
+    <dd>
+    Have a feature "drop" an item it contains on to the tile it's on
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         Item. The item to drop
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:drop_all_items"></a>
+    <strong>feature:drop_all_items ()</strong>
+    </dt>
+    <dd>
+    Have a feature drop all their items on the tile they're on
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:delete_item"></a>
+    <strong>feature:delete_item (item, amt)</strong>
+    </dt>
+    <dd>
+    Delete an item from a feature's inventory
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         Item. The item to remove
+        </li>
+        <li><span class="parameter">amt</span>
+         Number. The amount of the item to remove, if the item is stackable. Defaults to 1.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:get_inventory"></a>
+    <strong>feature:get_inventory ()</strong>
+    </dt>
+    <dd>
+    Get every item in a feature's inventory:
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:has_item"></a>
+    <strong>feature:has_item (item, sortBy, enchantments, level)</strong>
+    </dt>
+    <dd>
+    Check if a feature has an instance of an item ID
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         String. The item ID to check for
+        </li>
+        <li><span class="parameter">sortBy</span>
+         Text. What the "sortBy" value you're checking is (optional)
+        </li>
+        <li><span class="parameter">enchantments</span>
+         Table. The table of echantments to match (optional)
+        </li>
+        <li><span class="parameter">level</span>
+         Number. The level of the item (optional)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        either Boolean or Item. False, or the specific item they have in their inventory</li>
+        <li>
+        either nil or Number. The index of the item in the inventory</li>
+        <li>
+        either nil or Number. The amount of the item the player has</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:has_specific_item"></a>
+    <strong>feature:has_specific_item (item)</strong>
+    </dt>
+    <dd>
+    Check if a feature has a specific item
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         Item. The item to check for
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        either Boolean or Item. False, or the specific item they have in their inventory</li>
+        <li>
+        either nil or Number. The index of the item in the inventory</li>
+        <li>
+        either nil or Number. The amount of the item the feature has</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:has_tag"></a>
+    <strong>feature:has_tag (tag)</strong>
+    </dt>
+    <dd>
+    Checks if a feature has a descriptive tag.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         String. The tag to check for
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not it has the tag.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:populate_items"></a>
+    <strong>feature:populate_items (map, room, forceDefault)</strong>
+    </dt>
+    <dd>
+    Populate items in a feature
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">map</span>
+         Map. The map the feature is in.
+        </li>
+        <li><span class="parameter">room</span>
+         Room. The room the feature is in.
+        </li>
+        <li><span class="parameter">forceDefault</span>
+         Boolean. If true, don't use any custom populate_items code
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:modify_generated_item"></a>
+    <strong>feature:modify_generated_item (item, map, room)</strong>
+    </dt>
+    <dd>
+    Modify an item generated by a feature
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         Item. The item to modify.
+        </li>
+        <li><span class="parameter">map</span>
+         Map. The map the feature is in.
+        </li>
+        <li><span class="parameter">room</span>
+         Room. The room the feature is in.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:combust"></a>
+    <strong>feature:combust (skip_basic, source)</strong>
+    </dt>
+    <dd>
+    Checks a feature's combust() callback, if applicable, and then lights it on fire if applicable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">skip_basic</span>
+         Boolean. Whether to skip the combust() callback and just go ahead and light the fire. (optional)
+        </li>
+        <li><span class="parameter">source</span>
+         Entity. The cause of the combustion
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:apply_cold"></a>
+    <strong>feature:apply_cold (source)</strong>
+    </dt>
+    <dd>
+    Checks a feature's apply_cold() callback, if applicable, or its cold_feature flag, if applicable
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         Entity. The cause of the freezing
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "feature:apply_heat"></a>
+    <strong>feature:apply_heat (source)</strong>
+    </dt>
+    <dd>
+    Checks a feature's apply_heat() callback, if applicable, or its heat_feature flag, if applicable
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+         Entity. The cause of the melting
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-04-07 10:52:23 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

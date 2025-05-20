@@ -1,0 +1,964 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Condition.html">Condition</a></li>
+  <li><a href="../classes/Creature.html">Creature</a></li>
+  <li><a href="../classes/Effect.html">Effect</a></li>
+  <li><a href="../classes/Faction.html">Faction</a></li>
+  <li><a href="../classes/Feature.html">Feature</a></li>
+  <li><a href="../classes/Item.html">Item</a></li>
+  <li><a href="../classes/Map.html">Map</a></li>
+  <li><a href="../classes/Projectile.html">Projectile</a></li>
+  <li><a href="../classes/RangedAttack.html">RangedAttack</a></li>
+  <li><a href="../classes/Service.html">Service</a></li>
+  <li><strong>Spell</strong></li>
+  <li><a href="../classes/Store.html">Store</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/gamelogic.html">gamelogic</a></li>
+  <li><a href="../modules/input.html">input</a></li>
+  <li><a href="../modules/jumper.core.bheap.html">jumper.core.bheap</a></li>
+  <li><a href="../modules/jumper.core.heuristics.html">jumper.core.heuristics</a></li>
+  <li><a href="../modules/jumper.core.node.html">jumper.core.node</a></li>
+  <li><a href="../modules/jumper.core.path.html">jumper.core.path</a></li>
+  <li><a href="../modules/jumper.grid.html">jumper.grid</a></li>
+  <li><a href="../modules/jumper.pathfinder.html">jumper.pathfinder</a></li>
+  <li><a href="../modules/lib.serialize.html">lib.serialize</a></li>
+  <li><a href="../modules/mapgen.html">mapgen</a></li>
+  <li><a href="../modules/output.html">output</a></li>
+  <li><a href="../modules/util.html">util</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/jumper.search.astar.html">jumper.search.astar</a></li>
+  <li><a href="../scripts/jumper.search.bfs.html">jumper.search.bfs</a></li>
+  <li><a href="../scripts/jumper.search.dfs.html">jumper.search.dfs</a></li>
+  <li><a href="../scripts/jumper.search.dijkstra.html">jumper.search.dijkstra</a></li>
+  <li><a href="../scripts/jumper.search.jps.html">jumper.search.jps</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Spell</code></h1>
+<p></p>
+<p></p>
+
+
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#spell:init">spell:init (data)</a></td>
+	<td class="summary">Initiate a spell from its definition.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_description">spell:get_description (no_reqtext)</a></td>
+	<td class="summary">Get the description of the spell, its cost, and potentially a description of why you can't use it.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_info">spell:get_info ()</a></td>
+	<td class="summary">Returns all the stats of the spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:target">spell:target (target, caster, ignoreCooldowns)</a></td>
+	<td class="summary">Start targeting a spell (unless it's a self-only spell, in which case it just goes ahead and casts it).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:use">spell:use (target, caster, ignoreCooldowns, ignoreCost)</a></td>
+	<td class="summary">Cast a spell.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:can_use">spell:can_use (target, caster, ignoreCooldowns, ignoreCost)</a></td>
+	<td class="summary">Checks to see if the spell can be used right now</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:advance_active">spell:advance_active (target, caster, ignoreCooldowns, ignoreCost)</a></td>
+	<td class="summary">Placeholder for the advance_active() callback, which is called every turn a spell is active</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:finish">spell:finish (target, caster, ignoreCooldowns, ignoreCost)</a></td>
+	<td class="summary">Placeholder for the finish() callback, which is called when a spell is toggled off or stops being channeled.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:decide">spell:decide (target, caster, use_type)</a></td>
+	<td class="summary">Placeholder for the decide() callback, which is used by the AI to decide where to target a spell.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:requires">spell:requires (possessor)</a></td>
+	<td class="summary">Placeholder for the requires() callback, used to determine if the creature meets the requirements for using the spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:target_requires">spell:target_requires (target, caster, previous_targets)</a></td>
+	<td class="summary">Placeholder for the target_requires() callback, used to determine if the attempted target of the spell is acceptable</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:learn_requires">spell:learn_requires (possessor)</a></td>
+	<td class="summary">Placeholder for the learn_requires() callback, used to determine if the creature meets the requirements for using the spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_target_tiles">spell:get_target_tiles (target, possessor, previous_targets)</a></td>
+	<td class="summary">Placeholder for the get_target_tiles() function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:has_tag">spell:has_tag (tag)</a></td>
+	<td class="summary">Checks if a spell has a descriptive tag.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:is_type">spell:is_type (tag)</a></td>
+	<td class="summary">Checks if a spell is of a specific type</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_stat">spell:get_stat (stat, possessor, noBonus)</a></td>
+	<td class="summary">Get the stat for a spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_possible_upgrades">spell:get_possible_upgrades (use_requirements.)</a></td>
+	<td class="summary">Gets the possible upgrades for a spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:can_upgrade">spell:can_upgrade (upgrade)</a></td>
+	<td class="summary">Determines whether you're able to perform an upgrade</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_upgrade_cost">spell:get_upgrade_cost (upgradeID)</a></td>
+	<td class="summary">Gets the costs associated with a spell upgrade</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:apply_upgrade">spell:apply_upgrade (upgradeID, force)</a></td>
+	<td class="summary">Applies an upgrade to a spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_appliable_items">spell:get_appliable_items (possessor)</a></td>
+	<td class="summary">Get upgrade items that can be applied to a spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:apply_item">spell:apply_item (item)</a></td>
+	<td class="summary">Apply an item to a spell, gaining its bonuses</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:upgrade_requires">spell:upgrade_requires (possessor, upgradeID)</a></td>
+	<td class="summary">Placeholder for the upgrade_requires() callback, used to determine if the creature meets the requirements for upgrading the spell</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_potential_targets">spell:get_potential_targets (caster, previous_targets)</a></td>
+	<td class="summary">Gets potential targets of a spell.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:get_setting">spell:get_setting (settingID)</a></td>
+	<td class="summary">Get the value of a spell setting</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:setting_available">spell:setting_available (settingID)</a></td>
+	<td class="summary">Checks whether a spell setting is available</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:toggle_setting">spell:toggle_setting (settingID)</a></td>
+	<td class="summary">Toggle a setting on or off</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spell:update_charges">spell:update_charges (amount, silent)</a></td>
+	<td class="summary">Update the charges for a spell</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "spell:init"></a>
+    <strong>spell:init (data)</strong>
+    </dt>
+    <dd>
+    Initiate a spell from its definition.  You shouldn't use this function, the game uses it at loadtime to instantiate the spells.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+         Table. The table of spell information.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Spell. The spell itself.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_description"></a>
+    <strong>spell:get_description (no_reqtext)</strong>
+    </dt>
+    <dd>
+    Get the description of the spell, its cost, and potentially a description of why you can't use it.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">no_reqtext</span>
+         Boolean. If true, don't show the text that explains why you can't use the ability.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        String. The description of the spell.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_info"></a>
+    <strong>spell:get_info ()</strong>
+    </dt>
+    <dd>
+    Returns all the stats of the spell
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        String. The stats of the spell
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:target"></a>
+    <strong>spell:target (target, caster, ignoreCooldowns)</strong>
+    </dt>
+    <dd>
+    Start targeting a spell (unless it's a self-only spell, in which case it just goes ahead and casts it).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The caster of the spell.
+        </li>
+        <li><span class="parameter">ignoreCooldowns</span>
+         Boolean. If set to true, this will ignore whether or not the spell is on a cooldown.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the spell was successfully able to be cast/targeted or not.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:use"></a>
+    <strong>spell:use (target, caster, ignoreCooldowns, ignoreCost)</strong>
+    </dt>
+    <dd>
+    Cast a spell.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The caster of the spell.
+        </li>
+        <li><span class="parameter">ignoreCooldowns</span>
+         Boolean. If set to true, this will ignore whether or not the spell is on a cooldown.
+        </li>
+        <li><span class="parameter">ignoreCost</span>
+         Boolean. If set to true, this will make the spell not use MP when cast
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the spell was successfully able to be cast or not.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:can_use"></a>
+    <strong>spell:can_use (target, caster, ignoreCooldowns, ignoreCost)</strong>
+    </dt>
+    <dd>
+    Checks to see if the spell can be used right now
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The caster of the spell.
+        </li>
+        <li><span class="parameter">ignoreCooldowns</span>
+         Boolean. If set to true, this will ignore whether or not the spell is on a cooldown.
+        </li>
+        <li><span class="parameter">ignoreCost</span>
+         Boolean. If set to true, this will make the spell not use MP when cast
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the spell can be used right now
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:advance_active"></a>
+    <strong>spell:advance_active (target, caster, ignoreCooldowns, ignoreCost)</strong>
+    </dt>
+    <dd>
+    Placeholder for the advance_active() callback, which is called every turn a spell is active
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The caster of the spell.
+        </li>
+        <li><span class="parameter">ignoreCooldowns</span>
+         Boolean. If set to true, this will ignore whether or not the spell is on a cooldown.
+        </li>
+        <li><span class="parameter">ignoreCost</span>
+         Boolean. If set to true, this will make the spell not use MP when cast
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. False if the spell ends, true otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:finish"></a>
+    <strong>spell:finish (target, caster, ignoreCooldowns, ignoreCost)</strong>
+    </dt>
+    <dd>
+    Placeholder for the finish() callback, which is called when a spell is toggled off or stops being channeled.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The caster of the spell.
+        </li>
+        <li><span class="parameter">ignoreCooldowns</span>
+         Boolean. If set to true, this will ignore whether or not the spell is on a cooldown.
+        </li>
+        <li><span class="parameter">ignoreCost</span>
+         Boolean. If set to true, this will make the spell not use MP when cast
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:decide"></a>
+    <strong>spell:decide (target, caster, use_type)</strong>
+    </dt>
+    <dd>
+    Placeholder for the decide() callback, which is used by the AI to decide where to target a spell.  Defaults to the already-selected target.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The original target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The creature casting the spell.
+        </li>
+        <li><span class="parameter">use_type</span>
+         String. The way in which this spell is being used. Either aggressive, defensive, fleeing or friendly.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Entity. The new target of the spell.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:requires"></a>
+    <strong>spell:requires (possessor)</strong>
+    </dt>
+    <dd>
+    Placeholder for the requires() callback, used to determine if the creature meets the requirements for using the spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">possessor</span>
+         Creature. The creature who's trying to use the spell.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:target_requires"></a>
+    <strong>spell:target_requires (target, caster, previous_targets)</strong>
+    </dt>
+    <dd>
+    Placeholder for the target_requires() callback, used to determine if the attempted target of the spell is acceptable
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The attempted target of the spell.
+        </li>
+        <li><span class="parameter">caster</span>
+         Creature. The creature who's trying to use the spell.
+        </li>
+        <li><span class="parameter">previous_targets</span>
+         Table. The already-targeted targets of the spell, if applicable
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:learn_requires"></a>
+    <strong>spell:learn_requires (possessor)</strong>
+    </dt>
+    <dd>
+    Placeholder for the learn_requires() callback, used to determine if the creature meets the requirements for using the spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">possessor</span>
+         Creature. The creature who's trying to use the spell.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_target_tiles"></a>
+    <strong>spell:get_target_tiles (target, possessor, previous_targets)</strong>
+    </dt>
+    <dd>
+    Placeholder for the get_target_tiles() function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+         Entity. The potential target of the spell
+        </li>
+        <li><span class="parameter">possessor</span>
+         Creature. The creature who's trying to use the spell.
+        </li>
+        <li><span class="parameter">previous_targets</span>
+         Table. The already-targeted targets of the spell, if applicable
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:has_tag"></a>
+    <strong>spell:has_tag (tag)</strong>
+    </dt>
+    <dd>
+    Checks if a spell has a descriptive tag.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         String. The tag to check for
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not it has the tag.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:is_type"></a>
+    <strong>spell:is_type (tag)</strong>
+    </dt>
+    <dd>
+    Checks if a spell is of a specific type
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         String. The tag to check for
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether or not it has the tag.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_stat"></a>
+    <strong>spell:get_stat (stat, possessor, noBonus)</strong>
+    </dt>
+    <dd>
+    Get the stat for a spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">stat</span>
+         String. The stat to return
+        </li>
+        <li><span class="parameter">possessor</span>
+         Creature. The creature to look at when determine the spell's stats
+        </li>
+        <li><span class="parameter">noBonus</span>
+         Boolean. If true, don't apply any bonuses, just return the base stat
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Anything. Whatever the stat's value is (or false if not set)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_possible_upgrades"></a>
+    <strong>spell:get_possible_upgrades (use_requirements.)</strong>
+    </dt>
+    <dd>
+    Gets the possible upgrades for a spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">use_requirements.</span>
+         If true, only return upgrades that you meet the requirements for, otherwise return all upgrades that aren't maxed out
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Table. A table of the possible upgrades, with the format {upgradeID=upgradeLevel}
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:can_upgrade"></a>
+    <strong>spell:can_upgrade (upgrade)</strong>
+    </dt>
+    <dd>
+    Determines whether you're able to perform an upgrade
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">upgrade</span>
+         String. The ID of the upgrade
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_upgrade_cost"></a>
+    <strong>spell:get_upgrade_cost (upgradeID)</strong>
+    </dt>
+    <dd>
+    Gets the costs associated with a spell upgrade
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">upgradeID</span>
+         String. The ID of the upgrade
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:apply_upgrade"></a>
+    <strong>spell:apply_upgrade (upgradeID, force)</strong>
+    </dt>
+    <dd>
+    Applies an upgrade to a spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">upgradeID</span>
+         String. The ID of the upgrade to apply
+        </li>
+        <li><span class="parameter">force</span>
+         Boolean. If true, ignore upgrade requirements
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the upgrade was applied
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_appliable_items"></a>
+    <strong>spell:get_appliable_items (possessor)</strong>
+    </dt>
+    <dd>
+    Get upgrade items that can be applied to a spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">possessor</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:apply_item"></a>
+    <strong>spell:apply_item (item)</strong>
+    </dt>
+    <dd>
+    Apply an item to a spell, gaining its bonuses
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+         Item. The item to apply
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:upgrade_requires"></a>
+    <strong>spell:upgrade_requires (possessor, upgradeID)</strong>
+    </dt>
+    <dd>
+    Placeholder for the upgrade_requires() callback, used to determine if the creature meets the requirements for upgrading the spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">possessor</span>
+         Creature. The creature who's trying to upgrade the spell
+        </li>
+        <li><span class="parameter">upgradeID</span>
+         String. The ID of the upgrade
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_potential_targets"></a>
+    <strong>spell:get_potential_targets (caster, previous_targets)</strong>
+    </dt>
+    <dd>
+    Gets potential targets of a spell.  Uses the spell's own get_potential_targets() function if it has one, or defaults to seen creatures if it doesn't and it's a creature-spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">caster</span>
+         Creature. The caster of the spell
+        </li>
+        <li><span class="parameter">previous_targets</span>
+         Table. The already-targeted targets of the spell, if applicable
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Table. A list of potential targets
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:get_setting"></a>
+    <strong>spell:get_setting (settingID)</strong>
+    </dt>
+    <dd>
+    Get the value of a spell setting
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settingID</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the setting is set or not
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:setting_available"></a>
+    <strong>spell:setting_available (settingID)</strong>
+    </dt>
+    <dd>
+    Checks whether a spell setting is available
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settingID</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. Whether the setting is available or not
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:toggle_setting"></a>
+    <strong>spell:toggle_setting (settingID)</strong>
+    </dt>
+    <dd>
+    Toggle a setting on or off
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settingID</span>
+         String. The ID of the setting
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Boolean. The setting's new value, false for off, true for on
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spell:update_charges"></a>
+    <strong>spell:update_charges (amount, silent)</strong>
+    </dt>
+    <dd>
+    Update the charges for a spell
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">amount</span>
+         Number. The amount to change it by
+        </li>
+        <li><span class="parameter">silent</span>
+         Boolean. If true, don't show a popup
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-04-07 10:52:23 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
