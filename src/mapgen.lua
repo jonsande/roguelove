@@ -104,7 +104,7 @@ function mapgen:generate_map(branchID, depth,force)
     local whichLayout = get_random_element(whichMap.layouts)
     local whichModifier = whichMap.modifiers and get_random_element(whichMap.modifiers) or false
     print('creating via layout',whichLayout)
-    success = layouts[whichLayout](build)
+    success = layouts[whichLayout](build, build.width, build.height)
     if success ~= false and whichModifier then
       print('applying modifier',whichModifier)
       local args = whichMap.modifier_arguments and whichMap.modifier_arguments[whichModifier] or {}
