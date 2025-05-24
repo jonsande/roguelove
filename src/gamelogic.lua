@@ -841,6 +841,7 @@ function move_player(newX,newY,force,attack_when_zero)
           game:perform_action('speak',entity)
         else
           local text = ucfirst(entity:get_name()) .. " isn't hostile towards you. Are you sure you want to attack " .. entity:get_pronoun('o') .. "?"
+          print("Bob dice: ",entity:get_name(true,true), entity.baseType)
           game:warn_player(text,move_player,{newX,newY,true})
           return false --break here, so turn doesn't pass
         end

@@ -1639,6 +1639,7 @@ function game:buttonpressed(key,scancode,isRepeat)
       cancel_targeting()
     else
       action="targeting"
+      output:setCursor(player.x, player.y, true) -- Fix: puts the cursor at player's position (Bob)
     end
   elseif key == "attack" then
     if action == "moving" then
