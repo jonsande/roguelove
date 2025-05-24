@@ -819,7 +819,7 @@ end
 
 function Item:get_open_enchantment_slots()
   if self.enchantment_slots then
-    local slots = self.enchantment_slots
+    local slots = copy_table(self.enchantment_slots)
     if self.enchantments then
       for enID,_ in pairs(self.enchantments) do
         local enc = enchantments[enID]
@@ -933,6 +933,21 @@ end
 --@return Table. The list of enchantments
 function Item:get_enchantments()
   return self.enchantments or {}
+end
+
+---Return a list of all enchantments and their values in a string, for item ID purposes
+--@return String
+function Item:get_enchantment_string()
+  local enchString = ""
+  local enchTable = {}
+  for enchID,amt in pairs(self:get_enchantments()) do
+    enchTable[#enchTable+1] = {id=enchID,amt=amt}
+  end
+  sort_table(enchTable,'id')
+  for i,info in ipairs(enchTable) do
+    enchString = enchString .. info.id .. "=" .. info.amt .. (i ~= #enchTable and ";" or "")
+  end
+  return enchString
 end
 
 ---Returns the total value of the bonuses of a given type provided by enchantments.

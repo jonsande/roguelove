@@ -27,8 +27,7 @@ local town = {
   hideName=true, --If this is set to true, the name of the branch will not be shown when displaying the name of the map
   forceMapTypes={[1]="town"},
   possibleExits = {{branch="main",depth=1,replace_downstairs=true},{branch="wilderness",depth=1},{branch="graveyard",depth=1}},
-  --creatures={"townsperson"},
-  creatures={}, -- Bob did it
+  creatures={"townsperson"},
   factionTags={"organized"},
   min_level_base=0,
   max_level_base=0,
