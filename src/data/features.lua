@@ -555,7 +555,7 @@ local deepwater = {
   absorbs = true,
   color={r=0,g=0,b=200},
   hazard=5,
-  absorbs = true,
+  --absorbs = true,
   safeFor={swimmer=true,flyer=true},
   tilemap = true,
   walkedOnTilemap = true,
@@ -2430,10 +2430,10 @@ local bridge = {
 }
 function bridge:refresh_image_name()
   local dir = ""
-  if not currMap:tile_has_feature(self.x,self.y-1,"bridge") then dir = dir .. "n" self.symbol = "–" end
-  if not currMap:tile_has_feature(self.x,self.y+1,"bridge") then dir = dir .. "s" self.symbol = "–" end
-  if not currMap:tile_has_feature(self.x+1,self.y,"bridge") then dir = dir .. "e" end
-  if not currMap:tile_has_feature(self.x-1,self.y,"bridge") then dir = dir .. "w" end
+  if not self.map:tile_has_feature(self.x,self.y-1,"bridge") then dir = dir .. "n" self.symbol = "–" end
+  if not self.map:tile_has_feature(self.x,self.y+1,"bridge") then dir = dir .. "s" self.symbol = "–" end
+  if not self.map:tile_has_feature(self.x+1,self.y,"bridge") then dir = dir .. "e" end
+  if not self.map:tile_has_feature(self.x-1,self.y,"bridge") then dir = dir .. "w" end
   if dir == "nsew" then end
   if dir == "" then
     self.symbol = "+"
@@ -2445,6 +2445,7 @@ function bridge:refresh_image_name()
 end
 function bridge:new(args)
   args = args or {}
+  self.map = args.map -- Bob did it
   if (args.dir == 'ns') then self.symbol = "|" self.name = "bridgens"
   elseif (args.dir == 'ew') then self.symbol = "–" self.image_name="woodbridgeew" end
   if args.image_name then self.image_name = args.image_name end

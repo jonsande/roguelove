@@ -66,17 +66,17 @@ function love.load(arg)
  	load_prefs()
   quads = gen_quads()
   fonts = {
-    titleFont = love.graphics.newFont("assets/fonts/VeniceClassic.ttf",36),
-    headerFont = love.graphics.newFont("assets/fonts/VeniceClassic.ttf",24),
-    buttonFont = love.graphics.newFont("assets/fonts/VeniceClassic.ttf",18),
-    miniMapFont = love.graphics.newFont("assets/fonts/VeraMono.ttf",8),
-    mapFont = love.graphics.newFont("assets/fonts/VeraMono.ttf",prefs['asciiSize']),
+    titleFont = love.graphics.newFont("assets/fonts/Perfect_DOS_VGA_437.ttf",36),
+    headerFont = love.graphics.newFont("assets/fonts/Perfect_DOS_VGA_437.ttf",24),
+    buttonFont = love.graphics.newFont("assets/fonts/Perfect_DOS_VGA_437.ttf",18),
+    miniMapFont = love.graphics.newFont("assets/fonts/UbuntuMono-Bold.ttf",8),
+    mapFont = love.graphics.newFont("assets/fonts/UbuntuMono-Bold.ttf",prefs['asciiSize']),
     --mapFontDys = love.graphics.newFont("OpenDyslexic-Regular.otf",prefs['asciiSize']),
-    mapFontWithImages = love.graphics.newFont("assets/fonts/VeraMono.ttf",output:get_tile_size()),
+    mapFontWithImages = love.graphics.newFont("assets/fonts/UbuntuMono-Bold.ttf",output:get_tile_size()),
     textFont = love.graphics.newFont(prefs['fontSize']),
     --fancyTextFont = love.graphics.newFont("assets/fonts/NotJamSignature.ttf",prefs['fontSize']),
     descFont = love.graphics.newFont(prefs['descFontSize']),
-    menuFont = love.graphics.newFont("assets/fonts/VeniceClassic.ttf",36),
+    menuFont = love.graphics.newFont("assets/fonts/Perfect_DOS_VGA_437.ttf",36),
     --dysFont = love.graphics.newFont("OpenDyslexic-Regular.otf",14)
   }
   --[[if prefs['noImages'] ~= true then
