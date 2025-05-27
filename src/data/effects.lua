@@ -2047,26 +2047,62 @@ local animation = {
   color={r=255,g=255,b=255,a=255},
   remove_on_cleanup=true
 }
-function animation:new(info)
-  --image_name,image_max,target,color,ascii,use_color_with_tiles,repetitions,backwards,ignoreTurns,stopsInput,time_per_tile
+function animation:new(info) --Bob did it (reescrita toda la función)
+  -- Validar que info existe
+  if not info then
+    error("animation:new() requires an info parameter")
+  end
+  
+  -- Inicializar campos básicos con valores por defecto
   self.image_name = info.image_name
-  self.image_max = info.image_max
+  self.image_max = info.image_max or 1  -- Valor por defecto para evitar nil
   self.color = info.color or {r=255,g=255,b=255,a=255}
   self.target = info.target
   self.ascii = info.ascii or true
   self.use_color_with_tiles = info.use_color_with_tiles
   self.repetitions = info.repetitions or 0
-  self.time_per_tile = self.time_per_tile or .1
+  
+  -- Corregir la inicialización de time_per_tile
+  self.time_per_tile = info.time_per_tile or 0.1  -- Usar info.time_per_tile en lugar de self.time_per_tile
   self.countdown = self.time_per_tile
-
-  self.image_frame = (info.backwards and info.frames or 1)
+  
+  -- Inicializar campos de control con valores seguros
+  self.backwards = info.backwards or false  -- Asegurar que no sea nil
+  self.image_frame = (self.backwards and (self.image_max or 1) or 1)
   self.firstTurn = true
   self.repetition = 1
-  self.backwards=info.backwards
-  self.ignoreTurns=info.ignoreTurns
-  self.stopsInput=info.stopsInput
+  self.ignoreTurns = info.ignoreTurns or false
+  self.stopsInput = info.stopsInput or false
+  
+  -- Inicializar done como false
+  self.done = false
 end
 function animation:update(dt)
+    -- Verificaciones defensivas (Bob did it)
+  if not self.countdown then
+    print("======= Bob Warning: countdown is nil, reinitializing animation")
+    self.countdown = self.time_per_tile or 0.1
+  end
+  
+  if not self.time_per_tile then
+    print("======= Bob Warning: time_per_tile is nil, setting default")
+    self.time_per_tile = 0.1
+  end
+  
+  if not self.image_max then
+    print("======= Bob Warning: image_max is nil, setting default")
+    self.image_max = 1
+  end
+  
+  if not self.image_frame then
+    print("======= Bob Warning: image_frame is nil, setting default")
+    self.image_frame = 1
+  end
+  
+  if self.backwards == nil then
+    print("======= Bob Warning: backwards is nil, setting default")
+    self.backwards = false
+  end --Bob changes end's here
   self.countdown = self.countdown - dt
   if self.countdown <= 0 then
     self.countdown = self.time_per_tile

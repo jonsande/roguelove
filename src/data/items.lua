@@ -1301,7 +1301,7 @@ local humanskull = {
   stacks=true,
   projectile_name="skull",
   throwable=true,
-	color={r=255,g=255,b=255,a=255},
+	--color={r=255,g=255,b=255,a=255}, --Bob did it
 	ranged_attack="genericthrow",
   neverSpawn=true,
   remove_on_cleanup=true

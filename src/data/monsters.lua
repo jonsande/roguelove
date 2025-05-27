@@ -36,10 +36,13 @@ local slimemold = {
   description = "A disgusting creature, barely sentient. If you cut it in half, both halves will continue to live, and that's just gross.",
   types={"mindless","bloodless"},
   tags={"mainbranch"},
-  symbol = "J",
+  --symbol = "J",
+  symbol = "s", --Bob did it
   level = 1,
-  skills={strength=4,agility=1,toughness=25,melee=6},
-  max_hp = 200,
+  --skills={strength=4,agility=1,toughness=25,melee=6},
+  skills={strength=4,agility=0,toughness=25,melee=6}, --Bob did it
+  --max_hp = 200,
+  max_hp = 34, --Bob did it
   perception = 4,
   aggression = 25,
   faction="chaos",
@@ -57,7 +60,7 @@ local slimemold = {
 }
 possibleMonsters['slimemold'] = slimemold
 
-local imp = {
+--[[local imp = {
   name = "imp",
   description = "A tiny demon with wings and a pitchfork.",
   symbol = "i",
@@ -88,9 +91,9 @@ local imp = {
   image_name = "imp1",
   image_varieties=3
 }
-possibleMonsters['imp'] = imp
+possibleMonsters['imp'] = imp]] --Bob did it
 
-local cherub = {
+--[[local cherub = {
   name = "cherub",
   description = "This tiny little flying baby is armed with a bow and arrow.",
   symbol = "c",
@@ -120,7 +123,7 @@ local cherub = {
   image_name = "cherub1",
   image_varieties=3
 }
-possibleMonsters['cherub'] = cherub
+possibleMonsters['cherub'] = cherub]] --Bob did it
 
 local demonhunter = {
   name = "demon hunter",
@@ -535,7 +538,7 @@ local townguard = {
   level = 1,
   max_hp = 25,
   skills={strength=5,agility=5,toughness=5,melee=5,ranged=5},
-  level = 1,
+  --level = 1, --Bob did it
   max_level=10,
   perception = 5,
   aggression = 100,
@@ -596,7 +599,7 @@ local spiderHero = {
   neverSpawn=true,
   playerSpecies=true
 }
-possibleMonsters['player_spiderperson'] = spiderHero
+--possibleMonsters['player_spiderperson'] = spiderHero --Bob did it
 
 local tigerHero = {
   name = "tiger",
@@ -606,9 +609,10 @@ local tigerHero = {
   hit_chance={{condition="bleeding",chance=10,turns=3,crit_chance=100,crit_turns=5}},
   max_hp = 65,
   level = 1,
-  skills={strength=6,agility=6,toughness=7},
+  --skills={strength=6,agility=6,toughness=7}, --Bob did it
+  skills={strength=6,agility=6,toughness=7,melee=5}, --Bob did it
   perception = 10,
-  skills={melee=5},
+  --skills={melee=5}, --Bob did it
   skills_per_level={melee=1},
   stats_at_level={[5]={strength=5}},
   stats_per_x_levels={[2]={strength=1}},
@@ -625,7 +629,7 @@ local tigerHero = {
   neverSpawn=true,
   playerSpecies=true
 }
-possibleMonsters['player_tiger'] = tigerHero
+--possibleMonsters['player_tiger'] = tigerHero --Bob did it
 
 local vampireHero = {
   name = "vampire",
@@ -659,4 +663,4 @@ local vampireHero = {
   playerSpecies=true,
   weaknesses={fire=50}, --other weaknesses and resistances are applied from the undead creature type
 }
-possibleMonsters['player_vampire'] = vampireHero
+--possibleMonsters['player_vampire'] = vampireHero --Bob did it

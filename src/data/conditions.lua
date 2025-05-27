@@ -1872,9 +1872,9 @@ asleep = Condition({ --Assumed to exist by the base game
 		attacks = function (self, possessor, target)
 			return false
 		end,
-    attacks = function(self,possessor)
-			return false
-    end,
+    --attacks = function(self,possessor) --Bob did it
+			--return false --Bob did it
+    --end, --Bob did it
     apply = function (self,possessor)
       if (possessor.conditions['recentlyawoken'] and not currMap:tile_has_feature(possessor.x,possessor.y,"bed")) or possessor:has_spell('sleepless') then return false end --if the creature woke up recently, they can't fall asleep again. Unless they're on a bed because them shits are just so comfy.
       if player:can_sense_creature(possessor) then

@@ -1,11 +1,20 @@
 playerClasses = {
-  alchemist = {
+  truerogue = {
+    name ="True rogue",
+    description="The genuine rogue from Rogue the true rogue-game.",
+    skills={toughness=2,melee=4,ranged=4,agility=4,alchemy=3,critical=1}, --Ver descripción de cada habilidad en skills.lua
+    equipment={{item="sword"}, {item="dagger"}},
+    items={{item="weaponpoison"},{item="alcahest",amount=5},{item="bomb",amount=5},{item="dagger",amount=2}},
+    money=100,
+    require_species_tags={"intelligent"}
+  },
+  --[[alchemist = {
     name="Alchemist",
     description="Mixes up the big booms.",
     skills={toughness=1,melee=2,ranged=6,alchemy=10}, --The skills that this character will start with (in addition to default skills)
     recipe_tags={"alchemy"}, --These are the tags used to grant recipe knowledge to members of this class
     items={{item="weaponoil"},{item="alcahest",amount=5},{item="bomb",amount=5}}, --These items will be granted on game start
-    recipe_tags={"alchemy"},
+    --recipe_tags={"alchemy"}, --Bob did it
     resistances={fire=10,acid=10}, --These will be added the the characters' base resistances
     money=100, --Amount of money the character starts with
     require_species_tags={"intelligent"} --This class will only be available if the player's species has tags or types listed in this table (or their species itself is listed in the require_species table)
@@ -138,5 +147,5 @@ playerClasses = {
     skills={ranged=10}, --The skills that this character will start with (in addition to default skills)
     items={{item="bullet",amount=100},{item="firebullet",amount=10},{item="explosivebullet",amount=10}}, --These items will be granted on game start
     equipment={{item="revolver"},{item="revolver"}}
-  }
+  }]]
 }

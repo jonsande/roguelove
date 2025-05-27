@@ -1322,7 +1322,8 @@ function mapgen:generate_encounter(threat,creature_list,min_level,max_level,tags
       if cthreat == largest_threat then
         largest_list[#largest_list+1] = creatID
       elseif cthreat > largest_threat then
-        largest_threat = threat,largest_threat
+        --largest_threat = threat,largest_threat --Bob did it
+        largest_threat = cthreat --Bob did it
         largest_list = {creatID}
       end
       smallest_threat = (smallest_threat and math.min(smallest_threat,cthreat) or cthreat)
