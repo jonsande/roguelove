@@ -1,9 +1,39 @@
 possibleMonsters = {}
 
+local goblin = {
+  name = "goblin",
+  description = "Goblins!",
+  types={},
+  tags={"mainbranch"},
+  --symbol = "J",
+  symbol = "g", --Bob did it
+  level = 1,
+  --skills={strength=4,agility=1,toughness=25,melee=6},
+  skills={strength=4,agility=0,toughness=25,melee=6}, --Bob did it
+  --max_hp = 200,
+  max_hp = 34, --Bob did it
+  perception = 8,
+  aggression = 35,
+  faction="chaos",
+  ignore_distance = 2,
+  color={r=67,g=106,b=0},
+  corpse='goblin', --Los cadáveres (o lo que sea que deje al morir) son "features" (en data/features.lua)
+  weaknesses={fire=25,ice=25,water=25},
+  resistances={electric=25},
+  spells={},
+  animated=true,
+  spritesheet=true,
+  image_max=4,
+  randomAnimation=true,
+  animation_time = 0.33
+}
+possibleMonsters['goblin'] = goblin
+
 local rabidnerd = {
   name = "nerd",
   description = "This pimply-faced young man looks pretty angry. I guess it's true what they say about violent video games.",
-  symbol = "n",
+  symbol = "@", --Bob did it
+  --symbol = "n", --Bob did it
   types={"human","intelligent"},
   tags={"mainbranch"},
   nameType = "human",
@@ -60,7 +90,7 @@ local slimemold = {
 }
 possibleMonsters['slimemold'] = slimemold
 
---[[local imp = {
+local imp = {
   name = "imp",
   description = "A tiny demon with wings and a pitchfork.",
   symbol = "i",
@@ -78,7 +108,8 @@ possibleMonsters['slimemold'] = slimemold
   skills={strength=2,toughness=2,agility=10,melee=4,magic=5},
   perception = 5,
   notice_chance = 75,
-  aggression = 100,
+  -- aggression = 100,
+  aggression = 90, --Bob did it
   bravery = 1,
   min_distance = 3,
   color={r=255,g=0,b=0,a=255},
@@ -91,7 +122,7 @@ possibleMonsters['slimemold'] = slimemold
   image_name = "imp1",
   image_varieties=3
 }
-possibleMonsters['imp'] = imp]] --Bob did it
+possibleMonsters['imp'] = imp
 
 --[[local cherub = {
   name = "cherub",
@@ -128,7 +159,8 @@ possibleMonsters['cherub'] = cherub]] --Bob did it
 local demonhunter = {
   name = "demon hunter",
   description = "A holy warrior.",
-  symbol = "h",
+  --symbol = "h", --Bob did it
+  symbol = "@",
   types={"human","intelligent"},
   tags={"mainbranch"},
   nameType = "human",

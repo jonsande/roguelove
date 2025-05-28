@@ -4,21 +4,63 @@ dungeonBranches = {}
 
 local main = {
   name = "Dungeon",
-  max_depth=3,
+  width=40, --Bob did it
+  height=40, --Bob did it
+  --max_depth=3,
+  max_depth=12, --Bob did it
   depthName="Depth",
-  mapTypes = {'dungeon','caves','forest'},
+  --mapTypes = {'dungeon','caves','forest'},
+  mapTypes = {'dungeon'},
   creatureTags={'mainbranch'},
-  possibleExits = {{branch="town",depth=1,replace_upstairs=true},{branch="demonruins",min_depth=2,max_depth=3,name="Dark Portal"},{branch="endgame",depth=3,replace_downstairs=true}},
+  --Bob did it:
+  --possibleExits = {{branch="town",depth=1,replace_upstairs=true},{branch="demonruins",min_depth=2,max_depth=3,name="Dark Portal"},{branch="endgame",depth=3,replace_downstairs=true}},
+  possibleExits = {{branch="desert",depth=1,replace_upstairs=true},{branch="dungeon_B",min_depth=2,max_depth=4,name="Hole"},{branch="demonruins",min_depth=7,max_depth=11,name="Dark Portal"},{branch="endgame",depth=12,replace_downstairs=true}},
   forceMapTypes = {},
   allMapsUnique=true, --If this is set to true, map types will not be repeated when maps are created for this level
   noBacktrack=false, --If this is set to true, exits leading back to previous levels will not be created
   event_chance=50,
   event_cooldown=10,
   min_level_base=1,
-  max_level_base=3,
+  --max_level_base=3,
+  max_level_base=12,
   level_increase_per_depth=1,
 }
 dungeonBranches['main'] = main
+
+local dungeon_B = {
+  name = "Dungeon",
+  --max_depth=3,
+  max_depth=7, --Bob did it
+  depthName="Depth",
+  mapTypes = {'caves','forest'},
+  creatureTags={'mainbranch'},
+  --possibleExits = {{branch="desert",depth=1,replace_upstairs=true},{branch="dungeon_B",min_depth=2,max_depth=4,name="Hole"},{branch="demonruins",min_depth=7,max_depth=11,name="Dark Portal"},{branch="endgame",depth=12,replace_downstairs=true}},
+  forceMapTypes = {[7]="lavacave"}, --Specific map types will be forced for the given depths
+  allMapsUnique=true, --If this is set to true, map types will not be repeated when maps are created for this level
+  noBacktrack=false, --If this is set to true, exits leading back to previous levels will not be created
+  event_chance=50,
+  event_cooldown=10,
+  min_level_base=3,
+  --max_level_base=3,
+  max_level_base=7,
+  level_increase_per_depth=1,
+}
+dungeonBranches['dungeon_B'] = dungeon_B
+
+local desert = {
+  name = "Desert",
+  max_depth=1,
+  hideDepth=true, --Don't show the depth you're on when displaying the name of the map
+  hideName=true, --If this is set to true, the name of the branch will not be shown when displaying the name of the map
+  forceMapTypes={[1]="desert"},
+  possibleExits = {{branch="main",depth=1,replace_downstairs=true},{branch="wilderness",depth=1},{branch="graveyard",depth=1}},
+  creatures={}, --Aquí se especifica qué tipo de criaturas generar (pero en mapTypes.lua se puede forzar la generación de alguna en particular)
+  factionTags={"organized"},
+  min_level_base=0,
+  max_level_base=0,
+  level_increase_per_depth=0
+}
+dungeonBranches['desert'] = desert
 
 local town = {
   name = "Town",

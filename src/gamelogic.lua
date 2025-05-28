@@ -50,6 +50,10 @@ function new_game(mapSeed,playTutorial,cheats,branch)
   output:set_camera(player.x,player.y,true)
   update_stat('branch_reached',currMap.branch)
   update_stat('map_reached',currMap.id)
+  --output:text("Eeeeeee oooooooo") --Bob did it
+  --output:show_notification ("Eeeeeeeeoooooooooooo") --Bob did it
+  --output:show_popup("EEEeeeeeeeeeeeee ooooooooo") --Bob did it
+  --output:shake(3,0.1) --Bob did it
 end
 
 ---Figures out which level to load based on a given string. Used for level-skip cheats.
@@ -80,6 +84,7 @@ function initialize_player(creatureID,class,name,gender,pronouns)
   end
   player.symbol = "@"
   player.color={r=255,g=255,b=255,a=255}
+  output:show_popup("EEEeeeeeeeeeeeee ooooooooo") --Bob did it
 end
 
 ---Create the currGame object

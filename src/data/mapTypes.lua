@@ -17,12 +17,15 @@ mapTypes['forest'] = forest
 
 local dungeon = {
   playlist = "genericdungeon",
+  --Bob did it:
+  description = "Descripción de la dungeon",
   bossPlaylist = "genericdungeonboss",
   nameType = "dungeon",
   descType = "dungeon",
   tileset="dungeon",
   creature_density=1, --Bob did it
-  tags={'dungeon'}
+  tags={'dungeon'},
+  start_revealed=true
 }
 function dungeon.create(map,width,height)
   local rooms,hallways = layouts['bsptree'](map,width,height)
@@ -46,25 +49,25 @@ local caves = {
 }
 mapTypes['caves'] = caves
 
-local lavacave = {
-  playlist = "genericcave",
-  bossPlaylist = "genericcaveboss",
-  layouts = {'connectednodes','cavemaze','caves','drunkwalker','noise'},
-  modifiers = {'cave'},
-  tags = {'natural','fire'},
-  modifier_arguments = {cave={'lava'}},
-  tileset="cave",
-  nameType = "cave",
-  descType = "cave"
-}
-mapTypes['lavacave'] = lavacave
+-- local lavacave = { --Bob did it
+--   playlist = "genericcave",
+--   bossPlaylist = "genericcaveboss",
+--   layouts = {'connectednodes','cavemaze','caves','drunkwalker','noise'},
+--   modifiers = {'cave'},
+--   tags = {'natural','fire'},
+--   modifier_arguments = {cave={'lava'}},
+--   tileset="cave",
+--   nameType = "cave",
+--   descType = "cave"
+-- }
+-- mapTypes['lavacave'] = lavacave
 
 local town = {
   nameType = "town",
   tileset = "village",
   description = "A quaint village that for some reason has a staircase in the middle leading into an underground dungeon complex.",
-  width=25,
-  height=25,
+  width=45,
+  height=45,
   noItems=true, --If true, no items will generate on this level
   noExits=true, --If true, the automatic code to generate exits won't run on this level. You should manually put in exits in the create() code or something, or the player will get stuck
   noBoss=true, --If true, the game will not attempt to generate a boss when the player leaves this map
@@ -182,6 +185,132 @@ function town.populate_stores(map)
   return newStores
 end
 mapTypes['town'] = town
+
+local desert = {
+  nameType = "desert",
+  tileset = "village",
+  description = "The desert/wasteland description",
+  width=45,
+  height=45,
+  noItems=true, --If true, no items will generate on this level
+  noExits=true, --If true, the automatic code to generate exits won't run on this level. You should manually put in exits in the create() code or something, or the player will get stuck
+  noBoss=true, --If true, the game will not attempt to generate a boss when the player leaves this map
+  lit=true, --If true, the entire level will count as lit. Perception distance won't matter
+  creature_density=1, --How many creatures should be generated per 100 tiles
+  event_chance=100, --Likelihood that a non-faction random event will occur. Overrides the event_chance values in gamesettings and in the branch
+  event_cooldown=10, --Turns that must pass between ranodm events. Overrides the event_cooldown values in gamesettings and in the branch
+  forbid_faction_events=true, --If true, faction events won't occur on this map
+  start_revealed=true, --If true, reveal the entire map when it's entered (LOS will still apply, so you can't necessarily actively see everything)
+}
+function desert.create(map,width,height)
+  width,height = map.width,map.height
+  map:clear(true)
+  
+  --Add stairs in the middle:
+  local midX, midY = round(width/2),round(height/2)
+  local stairs = Feature('exit',{branch="main",exitName="Stairway"})
+  map:change_tile(stairs,midX,midY)
+  map.stairsUp.x,map.stairsUp.y = midX,midY
+  map.stairsDown.x,map.stairsDown.y = midX,midY
+  map:add_feature(Feature('statue'),midX-1,midY-1) --Colocar features fijas
+  map:add_feature(Feature('statue'),midX+1,midY-1)
+  map:add_feature(Feature('statue'),midX-1,midY+1)
+  map:add_feature(Feature('statue'),midX+1,midY+1)
+  
+  --Add gates to the wilderness:
+  local gatesw = Feature('exit',{branch="wilderness",exitName="Gate"})
+  map:change_tile(gatesw,midX,height-1)
+  --Add gates to the graveyard:
+  local gatesc = Feature('exit',{branch="graveyard",exitName="Gate"})
+  map:change_tile(gatesc,midX,2)
+  
+  -- local guard = map:add_creature(Creature('townguard'),5,5)
+  -- guard.guard_point = {x=2,y=2}
+  -- local guard2 = map:add_creature(Creature('townguard'),6,6)
+  -- guard2.patrol_points = {{x=3,y=3},{x=3,y=7},{x=7,y=7},{x=7,y=3}}
+  local goblin = map:add_creature(Creature('goblin'),5,5) --Aquí forzamos la generación de esta criatura
+  goblin.guard_point = {x=25,y=25} --La casilla a la que va a ir y va a proteger.
+  
+  --Add spawn points to corners (silly, but demonstrates the use of spawn points)
+  map.spawn_points = {{x=2,y=2},{x=width-1,y=2},{x=2,y=height-1},{x=width-1,y=height-1}}
+end
+-- function desert.check_building_footprint(ix,iy,map) --This is not a "normal" function for mapTypes, this is special to this one, called in its custom populate_factions and populate_stores code
+--   local midX, midY = round(map.width/2),round(map.height/2)
+--   for x=ix-3,ix+3,1 do
+--     for y=iy-3,iy+3,1 do
+--       if map[x][y] ~= "." or (x > midX-2 and x < midX+2 and y>midY-2 and y<midY-2) then
+--         return false
+--       end
+--     end
+--   end
+--   return true
+-- end
+-- function desert.populate_factions(map)
+--   local midX, midY = round(map.width/2),round(map.height/2)
+--   local newFacs = {}
+--   for _,fac in pairs(map:get_faction_list()) do
+--     if not fac.hidden and not fac.no_hq then
+--       local hq = Feature('factionHQ',fac)
+--       local tries = 0
+--       local ix,iy = random(4,map.width-3),random(5,map.height-5)
+--       while (desert.check_building_footprint(ix,iy,map) == false) do
+--         ix,iy = random(4,map.width-3),random(5,map.height-5)
+--         tries = tries+1
+--         if tries > 100 then break end
+--       end
+--       if tries ~= 100 then
+--         local xDiff,yDiff = math.abs(ix-midX),math.abs(iy-midY)
+--         for x=ix-1,ix+1,1 do
+--           for y=iy-1,iy+1,1 do
+--             map[x][y] = "#"
+--           end
+--         end
+--         if xDiff > yDiff then
+--           map[(ix < midX and ix+1 or ix-1)][iy] = "."
+--           map:add_feature(hq,(ix < midX and ix+1 or ix-1),iy)
+--         else
+--           map[ix][(iy < midY and iy+1 or iy-1)] = "."
+--           map:add_feature(hq,ix,(iy < midY and iy+1 or iy-1))
+--         end
+--         newFacs[#newFacs+1] = hq
+--       end --end tries if
+--     end
+--   end
+--   return newFacs
+-- end
+-- function desert.populate_stores(map)
+--   local midX, midY = round(map.width/2),round(map.height/2)
+--   local newStores = {}
+--   for _,store in pairs(map:get_store_list()) do
+--     local s = Feature('store',store)
+--     if not s.store.faction then s.store.faction = "village" end
+--     local tries = 0
+--     local ix,iy = random(4,map.width-3),random(4,map.height-3)
+--     while (desert.check_building_footprint(ix,iy,map) == false) do
+--       ix,iy = random(4,map.width-3),random(4,map.height-3)
+--       tries = tries+1
+--       if tries > 100 then break end
+--     end
+--     if tries ~= 100 then 
+--       local xDiff,yDiff = math.abs(ix-midX),math.abs(iy-midY)
+--         for x=ix-1,ix+1,1 do
+--           for y=iy-1,iy+1,1 do
+--             map[x][y] = "#"
+--           end
+--         end
+--         if xDiff > yDiff then
+--           map[(ix < midX and ix+1 or ix-1)][iy] = "."
+--           map:add_feature(s,(ix < midX and ix+1 or ix-1),iy)
+--         else
+--           map[ix][(iy < midY and iy+1 or iy-1)] = "."
+--           map:add_feature(s,ix,(iy < midY and iy+1 or iy-1))
+--         end
+--       newStores[#newStores+1] = s
+--     end --end tries if
+--   end
+--   return newStores
+-- end
+mapTypes['desert'] = desert
 
 local demonruins = {
   playlist = "genericcave",

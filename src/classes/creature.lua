@@ -1582,9 +1582,9 @@ function Creature:attack(target,forceHit,ignore_callbacks)
       if player:can_see_tile(self.x,self.y) or player:can_see_tile(target.x,target.y) and player:does_notice(self) and player:does_notice(target) then
         output:out(txt)
         local popup = Effect('dmgpopup')
-        popup.image_name = "miss"
-        popup.symbol=""
-        popup.color = {r=0,g=0,b=150,a=150}
+        --popup.image_name = "miss" --Bob did it (Quita el popup al fallar golpe)
+        --popup.symbol=""
+        --popup.color = {r=0,g=0,b=150,a=150}
         currMap:add_effect(popup,target.x,target.y)
       end
 		else
@@ -3743,7 +3743,8 @@ end
 ---How much XP do you need to level up? *MAY WANT TO CHANGE FOR YOUR OWN GAME*
 --@return Number. The XP required to level up
 function Creature:get_level_up_cost()
-  return self.level*10
+  --return self.level*10 --Bob did it
+  return self.level*20
 end
 
 ---Level Up, granting stat points (for players), or randomly increasing stats (for NPCs)

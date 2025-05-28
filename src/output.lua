@@ -40,6 +40,12 @@ function output.display_entity(entity,x,y, seen,ignoreDistMods,scale)
   if prefs['noImages'] == true or images[image_name] == nil then --if the creature has no image or images are off, then print symbol
     local oldFont = love.graphics.getFont()
     love.graphics.setFont((prefs['noImages'] and fonts.mapFont or fonts.mapFontWithImages))
+    -- BOB DID IT - Dibujar fondo opaco antes del símbolo
+    local backgroundColor = {r=0, g=0, b=0, a=255} -- Color de fondo (negro opaco)
+    -- Si tienes una variable global para el color de fondo del mapa, úsala en su lugar
+    setColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a)
+    love.graphics.rectangle("fill", x+xMod, y+yMod, tileSize, tileSize)
+    -- BOB - FIN DE LAS LÍNEAS AÑADIDAS
     if seen then
       if prefs['tileImages'] == true and prefs['creatureShadows'] == true then
         setColor(0,0,0,alpha) --draw a shadow first

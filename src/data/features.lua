@@ -801,6 +801,15 @@ local zombait = {
 }
 possibleFeatures['zombait'] = zombait
 
+local goblin = {
+  name = "A goblin corpse",
+  description = "I thought they were just legends.",
+  symbol = "%",
+  color={r=67,g=106,b=0,a=255},
+  remove_on_cleanup=true
+}
+possibleFeatures['goblin'] = goblin
+
 local slime = {
   name = "Slime",
   description = "A puddle of slippery slime.",
