@@ -1,10 +1,10 @@
 gamesettings = {
   --Basic game definition:
-  name = "Roguelove Example Game", --Will be displayed on the main screen
-  id="rogueloveexample", --Used internally
-  author = "Weirdfellows",
+  name = "The Pilgrim", --Will be displayed on the main screen
+  id="pilgrimroguelike", --Used internally
+  author = "apeirondevs",
   version_text = "In Development Version", --Will be displayed at the bottom of the screen
-  copyright_text="Copyright 2025 Weirdfellows", --Will be displayed at the bottom of the screen
+  copyright_text="UnCopyright 2072 Sunflowers", --Will be displayed at the bottom of the screen
   url="http://weirdfellows.com", --Will be displayed at the bottom of the screen. Clicking it opens the URL
   
   --Display:
@@ -15,19 +15,21 @@ gamesettings = {
   xp=true, --If true, this game awards XP on kills and uses it for leveling
   leveling=true, --If true, this game features leveling
   events=true, --If true, events can be fired
-  default_starting_branch="town", --What branch to start the player in
+  default_starting_branch="main", --What branch to start the player in
   bosses=true, --If true, bosses will spawn when trying to go to a new level
-  player_tombstones=true, --If true, tombstones will be created on levels where players were previous killed listing their date and cause of death
+  player_tombstones=false, --If true, tombstones will be created on levels where players were previous killed listing their date and cause of death
   heal_on_level_up=true, --reset to max HP and MP on a level up
   display_creature_levels=true, --If true, creature levels will be displayed. Otherwise they won't (but can still be used behind the scenes)
   --cleanup_on_map_exit=true, --If true, run Map:cleanup() when you exit a map
   cleanup_on_branch_exit=true, -- If true, run Map:cleanup() when you exit a branch (redundant if cleanup_on_map_exit is already true)
   
   --Map and world generation:
-  default_map_width=60,
-  default_map_height=60,
+  --default_map_width=60, --Bob did it
+  --default_map_height=60, --Bob did it
+  default_map_width=40,
+  default_map_height=40,
   no_map_descriptions=false, --If true, do not display map description popups when entering a new map
-  creature_density=3,
+  creature_density=10,
   item_density=1,
   enchantment_chance=50,
   artifact_chance=10,
